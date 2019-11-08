@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <title>ToDoApp</title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Kalam&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+    <div class="container login-container-style">
+        <div class="row">
+
+            <div class="col-3">
+
+            </div>
+
+            <div class="col-6 login-col-style">
+                <h2 class="logo-style">ToDoApp</h2> <img src="img/all-md.png">
+                <br>
+                <br>
+                <form th:action="@{/authenticateTheUser}"
+                      method="POST" class="form-horizontal">
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div>
+
+                                <div th:if="${param.error}" class="alert alert-danger input-group">
+                                    Nieprawidłowy login lub hasło.
+                                </div>
+
+                                <div th:if="${param.logout}" class="alert alert-success input-group">
+                                    Zostałeś wylogowany.
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <input type="text" name="username" placeholder="login" class="form-control">
+                    </div>
+                    <br>
+                    <div class="input-group">
+
+                        <input type="password" size="30" name="password" placeholder="hasło" class="form-control">
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Zaloguj</button>
+                    <a th:href="@{/register/showRegistrationForm}" class="btn btn-primary" role="button"
+                       aria-pressed="true">Rejestracja</a>
+                </form>
+            </div>
+
+            <div class="col-3">
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

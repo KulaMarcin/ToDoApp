@@ -1,0 +1,86 @@
+body{
+    background: url(../img/background-img.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.container-style{
+    padding: 50px;
+    background-color: white;
+    height: 100vh;
+    border-radius: 30px;
+}
+
+.container-update-style{
+    margin-top: 100px;
+    padding: 50px;
+    background-color: white;
+    height: 400px;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.table-style{
+    text-align: center;
+    padding: 10px;
+}
+
+.row-style{
+    padding: 25px;
+}
+
+.col-style{
+
+}
+
+.form-style{
+    display: inline-block;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #25ae87 !important;
+}
+
+.logo-style{
+    font-family: 'Kalam', cursive;
+}
+
+.login-container-style{
+    padding: auto;
+
+    text-align: center;
+
+}
+
+.login-col-style{
+    border-radius: 30px;
+    margin-top: 180px;
+    padding-top: 100px;
+    background-color: white;
+    height: 620px;
+}
+
+.input-group{
+    margin-left: auto;
+    margin-right: auto;
+    width: 350px;
+}
+
+.nav-link-style{
+    margin-top: 10px;
+    margin-left: 8px;
+}
+
+.register-col-style{
+    border-radius: 30px;
+    margin-top: 50px;
+    padding-top: 60px;
+    background-color: white;
+    height: 910px;
+}
+
+.auto-margin{
+    text-align: center;
+}

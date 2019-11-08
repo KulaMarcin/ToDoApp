@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+	<title>ToDoApp</title>
+	<meta charset="utf-8">
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet"
+		  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+		  crossorigin="anonymous">
+
+	<link href="https://fonts.googleapis.com/css?family=Kalam&display=swap" rel="stylesheet">
+	<link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div class="container login-container-style">
+
+	<div class="row">
+
+		<div class="col-3">
+
+		</div>
+
+		<div class="col-6 register-col-style">
+			<h2 class="logo-style">ToDoApp</h2>
+			<br>
+			<br>
+
+			<p>Nowy użytkownik został zarejestrowany.</p>
+
+			<hr>
+
+			<a class="btn btn-primary" th:href="@{/showMyLoginPage}">Zaloguj</a>
+
+
+		</div>
+
+		<div class="col-3">
+
+		</div>
+
+	</div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Registration Confirmation</title>
+</head>
+
+<body>
+
+	<h2>User registered successfully!</h2>
+
+	<hr>
+	
+	<a th:href="@{/showMyLoginPage}">Login with new user</a>
+	
+</body>
+
+</html>

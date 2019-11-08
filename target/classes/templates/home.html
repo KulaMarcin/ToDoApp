@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <title>luv2code Company Home Page</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Kalam&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+
+<body>
+
+<div class="container container-style">
+
+    <br>
+
+    <div class="row">
+
+        <div class="col col-style">
+
+            <nav class="home-nav navbar navbar-expand-lg ">
+                <a class="navbar-brand home-menu-logo-style"><h1 class="logo-style">ToDoApp</h1></a>
+                <button class="navbar-toggler" type="button"
+                        data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active "><a class="nav-link" data-toggle="collapse"
+                                                        href="#multiCollapseExample1" role="button"
+                                                        aria-expanded="false" aria-controls="multiCollapseExample1"><img
+                                data-toggle="tooltip" data-placement="top" title="Dodaj zadanie" src="img/add-md.png"/></a>
+                        </li>
+
+                        <li class="nav-item active "><a class="nav-link" th:href="@{/}"><img data-toggle="tooltip"
+                                                                                             data-placement="top"
+                                                                                             title="Pokaż wszyskie"
+                                                                                             src="img/all-md.png"/></a>
+                        </li>
+
+                        <li class="nav-item active "><a class="nav-link" th:href="@{/showDoneTasks}"><img
+                                data-toggle="tooltip" data-placement="top" title="Zrobione" src="img/done-task-md.png"/></a>
+                        </li>
+
+                        <li class="nav-item active "><a class="nav-link" th:href="@{/showNotDoneTasks}"><img
+                                data-toggle="tooltip" data-placement="top" title="Do zrobienia"
+                                src="img/notdone-task-md.png"/></a></li>
+
+                        <li class="nav-item active "><a class="nav-link" th:href="@{/removeDoneTasks}"><img
+                                data-toggle="tooltip" data-placement="top" title="Usuń wykonane zadania"
+                                src="img/bin-md.png"/></a></li>
+
+                        <li class="nav-item active "><a class="nav-link" th:href="@{/sendEmail}"><img
+                                data-toggle="tooltip" data-placement="top" title="Wyślij niewykonane zadania na maila"
+                                src="img/gmail-md.png"/></a></li>
+
+                        <li class="nav-item active nav-link-style">
+                            <form th:action="@{/logout}" method="POST">
+                                <input type="image" data-toggle="tooltip" data-placement="top" title="Wyloguj"
+                                       src="img/logout-md.png" border="0" alt="Submit"/>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+
+            <br>
+            <br>
+
+            <div class="row">
+                <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample1">
+                        <div class="card card-body">
+                            <br>
+
+                            <form th:action="@{/addThingToDoAction}" method="POST" th:object="${task}">
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control"
+                                           th:field="*{id}" placeholder="id">
+                                    <input
+                                            size="30" class="form-control" type="text"
+                                            th:field="*{description}" placeholder="Nowe zadanie">
+                                    <br>
+                                    <br>
+
+                                    <button class="btn btn-primary" type="submit">Dodaj zadanie</button>
+                                </div>
+                            </form>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <br>
+    <br>
+
+    <div class="row">
+
+        <div class="col my-col-style">
+
+            <table class="table table-style">
+                <thead class="">
+                <tr>
+                    <th>Stan</th>
+                    <th>Opis</th>
+                    <th>Akcja</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="task : ${tasks}">
+                    <td>
+                        <img th:if="${task.state}==1" data-toggle="tooltip" data-placement="top"
+                             title="Zrobione! :)" src="img/task-done-pro-sm.png"/>
+                        <img th:if="${task.state}==0" data-toggle="tooltip" data-placement="top"
+                             title="Nie zrobione :(" src="img/task-notdone-pro-sm.png"/>
+                    </td>
+                    <td><a th:text="${task.description}"></a></td>
+                    <td>
+                        <a th:if="${task.state}==0" th:href="@{/showUpdateTeskPage(taskId=${task.id})}">
+                            <img data-toggle="tooltip" data-placement="top" title="Zmień" src="img/update-pro-sm.png"/>
+                        </a>
+
+                        <a th:if="${task.state}==0" th:href="@{/setStateToDoneAction(taskId=${task.id})}">
+                            <img data-toggle="tooltip" data-placement="top"
+                                 title="Zrobione" src="img/done-pro-sm.png"/>
+                        </a>
+
+                        <a th:if="${task.state}==1" th:href="@{/setStateToNotDoneAction(taskId=${task.id})}">
+                            <img data-toggle="tooltip" data-placement="top" title="Przywróć"
+                                 src="img/restore-task-pro-sm.png"/>
+                        </a>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
